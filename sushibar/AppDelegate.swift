@@ -2,20 +2,15 @@
 //  AppDelegate.swift
 //  sushibar
 //
-//  Created by mzp on 2016/10/29.
-//  Copyright © 2016 mzp. All rights reserved.
+//  Created by paishinoda on 21-03-2018
+//  Copyright © 2018 paishinoda. All rights reserved.
 //
 
 import Cocoa
 
 fileprivate extension NSTouchBarItemIdentifier {
-    static let kome = NSTouchBarItemIdentifier("jp.mzp.touchbar.kome")
-    static let fish = NSTouchBarItemIdentifier("jp.mzp.touchbar.fish")
-    static let sushi = NSTouchBarItemIdentifier("jp.mzp.touchbar.sushi")
-//    static let lane = NSTouchBarItemIdentifier("jp.mzp.touchbar.lane")
-    static let komelane = NSTouchBarItemIdentifier("jp.mzp.touchbar.lane.kome")
-    static let fishlane = NSTouchBarItemIdentifier("jp.mzp.touchbar.lane.fish")
-    static let sushilane = NSTouchBarItemIdentifier("jp.mzp.touchbar.lane.sushi")
+    static let sushi = NSTouchBarItemIdentifier("com.faizalheesyam.touchbar.sushi")
+    static let sushilane = NSTouchBarItemIdentifier("com.faizalheesyam.touchbar.lane.sushi")
 }
 
 @available(OSX 10.12.2, *)
@@ -45,7 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTouchBarProvider, NSTouchB
     func makePrimaryTouchBar() -> NSTouchBar {
         let mainBar = NSTouchBar()
         mainBar.delegate = self
-        mainBar.defaultItemIdentifiers = [.kome, .fish, .sushi]
+        mainBar.defaultItemIdentifiers = [.sushi]
         return mainBar
     }
 
@@ -57,17 +52,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTouchBarProvider, NSTouchB
     }
 
     func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItemIdentifier) -> NSTouchBarItem? {
-        if identifier == .kome {
-            let item = NSPopoverTouchBarItem(identifier: identifier)
-            item.collapsedRepresentationLabel = "🍚"
-            item.popoverTouchBar = makeSecondaryTouchBar(tLane: .komelane)
-            return item
-        } else if identifier == .fish {
-            let item = NSPopoverTouchBarItem(identifier: identifier)
-            item.collapsedRepresentationLabel = "🐟"
-            item.popoverTouchBar = makeSecondaryTouchBar(tLane: .fishlane)
-            return item
-        }else if identifier == .sushi {
+        if identifier == .sushi {
             let item = NSPopoverTouchBarItem(identifier: identifier)
             item.collapsedRepresentationLabel = "🍣"
             item.popoverTouchBar = makeSecondaryTouchBar(tLane: .sushilane)
@@ -76,18 +61,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTouchBarProvider, NSTouchB
             let item = NSCustomTouchBarItem(identifier: identifier)
             let sushiLaneVC = SushiLaneController()
             sushiLaneVC.setStr(str:"🍣")
-            item.viewController = sushiLaneVC
-            return item
-        } else if identifier == .fishlane {
-            let item = NSCustomTouchBarItem(identifier: identifier)
-            let sushiLaneVC = SushiLaneController()
-            sushiLaneVC.setStr(str:"🐟")
-            item.viewController = sushiLaneVC
-            return item
-        } else if identifier == .komelane {
-            let item = NSCustomTouchBarItem(identifier: identifier)
-            let sushiLaneVC = SushiLaneController()
-            sushiLaneVC.setStr(str:"🍚")
             item.viewController = sushiLaneVC
             return item
         } else {

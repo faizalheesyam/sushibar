@@ -2,8 +2,8 @@
 //  InfinitySushi.swift
 //  sushibar
 //
-//  Created by mzp on 2016/10/29.
-//  Copyright © 2016 mzp. All rights reserved.
+//  Created by paishinoda on 21-03-2018
+//  Copyright © 2018 paishinoda. All rights reserved.
 //
 
 import Foundation
@@ -39,7 +39,7 @@ class SushiLaneController : NSViewController {
         sushi.drawsBackground = false
         sushi.isEditable = false
         sushi.isSelectable = false
-        sushi.font = NSFont.systemFont(ofSize: 20)
+        sushi.font = NSFont.systemFont(ofSize: 25)
         return sushi
     }
 
